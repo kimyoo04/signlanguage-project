@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 import openai
 
@@ -31,8 +32,7 @@ def chat(request):
     prompt = request.POST.get('question')
     result = chatGPT(prompt)
     context = {
-        'question': prompt,
         'result': result
     }
 
-    return render(request, 'selfgpt/result.html', context)
+    return JsonResponse(context)
