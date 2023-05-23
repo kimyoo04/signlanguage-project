@@ -1,9 +1,10 @@
 from django.shortcuts import render
 import openai
+import os
 # Create your views here.
 
-openai.api_key = "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"
-
+openai.api_key = os.environ.get("AI_CHATGPT_SECRET_KEY")
+ 
 
 #chatGPT에게 채팅 요청 API
 def chatGPT(prompt):
