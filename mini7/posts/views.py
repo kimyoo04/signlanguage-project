@@ -49,9 +49,7 @@ def read_posts_list(request):
     게시판 조회
     """
     # 입력 인자
-    page = request.GET['page'] #페이지 
-    if page is None: 
-        page = 1
+    page = request.GET.get('page', 1)
     
     # 조회
     p_list = Post.objects.order_by('-create_date')
@@ -63,11 +61,14 @@ def read_posts_list(request):
     serialized_page = serializers.serialize('python', page_obj)
     for data in serialized_page:
         fields = data['fields']
+
+        fields['postId'] = data['pk']
+        fields['createdAt'] = fields.pop('create_date')
         user_id = fields['user_id']
         username = User.objects.get(id=user_id).username
         fields['username'] = username
     
-    data = [data['fields'] for data in serialized_page]
+    data = {"data":[data['fields'] for data in serialized_page]}
 
     return JsonResponse(data, safe=False)
 
@@ -98,6 +99,11 @@ def read_post(request, post_id):
     """
 
     post = get_object_or_404(Post, pk=post_id)
+
+    # 접속할 때마다 조회수 1 증가
+    post.views += 1
+    post.save()
+
     data = {
         "postId": post_id,
         "title": post.title,
@@ -115,15 +121,20 @@ def update_post(request, post_id):
     포스트 수정
     """
     post = get_object_or_404(Post, id=post_id)
-    
     body = json.loads(request.body)
-    form = PostForm(body, instance=post)
+    
+    # 데이터 업데이트
+    post.title = body['title']
+    post.content = body['content']
+    
+    # 포스트 저장
+    post.save()
 
-    if form.is_valid():
-        form.save()
-        return JsonResponse({"message": "성공했습니다."}, status=200)
-    else:
-        return JsonResponse({"message": "유효하지 않은 데이터입니다."}, status=400)
+    try:
+        post.save()
+        return JsonResponse({"message":"success"}, status=200)
+    except:
+        return JsonResponse({"message": "fail"}, status=400)
     
     
 
