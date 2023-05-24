@@ -5,7 +5,7 @@ import { useDropzone } from "react-dropzone";
 export default function SignLanguage() {
   const [previewImages, setPreviewImages] = useState<string[]>([]);
 
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback((acceptedFiles: File[]) => {
     // 선택된 파일을 미리보기 이미지로 변환
     const imagePreviews = acceptedFiles.map((file: File) =>
       URL.createObjectURL(file)
