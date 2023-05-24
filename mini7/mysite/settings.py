@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'selfsignlanguagetochatgpt',
     'drf_yasg',
     'account',
+    'rest_framework', 
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ],
+}
 
 DATABASES = {
     'default': {
