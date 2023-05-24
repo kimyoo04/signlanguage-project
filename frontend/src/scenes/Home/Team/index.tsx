@@ -8,7 +8,7 @@ export default function Team() {
       </div>
 
       <div className="col-center w-full py-8">
-        <h2 className="pb-8 text-xl">Aivle School 4조</h2>
+        <h2 className="pb-8 text-xl font-medium">Aivle School 4조</h2>
         <div className="grid w-full gap-3 md:grid-cols-3 lg:px-12">
           <div className="col-center gap-5 rounded-xl border p-8">
             {/* 역할 명칭 */}
