@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class SelfsignlanguagetochatgptConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'selfsignlanguagetochatgpt'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "selfsignlanguagetochatgpt"
