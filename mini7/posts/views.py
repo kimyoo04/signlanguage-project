@@ -61,11 +61,15 @@ def read_posts_list(request):
     page_obj = paginator.get_page(page)
 
     serialized_page = serializers.serialize('python', page_obj)
+    for data in serialized_page:
+        fields = data['fields']
+        user_id = fields['user_id']
+        username = User.objects.get(id=user_id).username
+        fields['username'] = username
     
-    data = {
-        "data":serialized_page
-    }
-    return JsonResponse(data)
+    data = [data['fields'] for data in serialized_page]
+
+    return JsonResponse(data, safe=False)
 
 
 def create_post(request):
