@@ -4,7 +4,7 @@ export default function Team() {
   return (
     <div className="col-center py-8">
       <div className="flex w-full border-b pb-2">
-        <h1 className="text-3xl font-medium">팀 소개</h1>
+        <h1 className="text-2xl font-medium">팀 소개</h1>
       </div>
 
       <div className="col-center w-full py-8">
