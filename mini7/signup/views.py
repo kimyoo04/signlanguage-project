@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.http import HttpResponse, JsonResponse, Http404
+from django.http import JsonResponse
 import json
 
 def check_duplicate_username(username):
@@ -24,7 +24,6 @@ def create_user_with_duplicate_check(user_id, password, user_name):
 def signup(request):
     if request.method == 'POST':
         # 프론트엔드에서 전달된 데이터
-        
         raw_data = request.body.decode('utf-8')
 
         # JSON 디코딩
@@ -38,7 +37,7 @@ def signup(request):
         
         user = create_user_with_duplicate_check(user_id, password, user_name)
         
-        if user == None:
+        if user is None:
             return JsonResponse({"message": "Fail"})
         else:
             print(f"생성 완료! id: {user_id} password: {password}")
