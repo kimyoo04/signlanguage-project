@@ -1,6 +1,11 @@
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.shortcuts import render
 from django.http import JsonResponse
 import json
+
+from rest_framework_jwt.settings import api_settings
+
 
 def check_duplicate_username(username):
     try:
@@ -42,4 +47,37 @@ def signup(request):
         else:
             print(f"생성 완료! id: {user_id} password: {password}")
             return JsonResponse({"message": "Success"})
+        
+def signin_view(request):
+    if request.method == 'POST':
+        raw_data = request.body.decode('utf-8')
+        
+        # JSON 디코딩
+        json_data = json.loads(raw_data)
+        
+        userId = json_data.get('userId')
+        password = json_data.get('password')
+        print(userId, password)
+        
+        user = authenticate(request, username=userId, password=password)
+        print(user)
+        if user is not None:
+            login(request, user)
+            
+            jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+            jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+            
+            payload = jwt_payload_handler(user)
+            token = jwt_encode_handler(payload)
+            
+            response = JsonResponse({'success': True, 'message': '로그인 성공!', 'token': token})
+            return response
+        else:
+            return JsonResponse({'success': False, 'message': '잘못된 사용자 이름 또는 비밀번호입니다.'})
+
+    return render(request, 'signin.html')
+
+def signout_view(request):
+    logout(request)
+    return JsonResponse({'success': True, 'message': '로그아웃 되었습니다.'})
         
