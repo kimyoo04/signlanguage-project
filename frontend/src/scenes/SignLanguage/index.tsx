@@ -1,57 +1,52 @@
+import Image from "next/image";
+import React, { useCallback, useState } from "react";
+import { useDropzone } from "react-dropzone";
+
 export default function SignLanguage() {
-  let idNum = 0;
+  const [previewImages, setPreviewImages] = useState<string[]>([]);
 
-  function deepCopy() {
-    // 'test' node 선택
-    const fileModule = document.getElementById("file-module-" + idNum);
+  const onDrop = useCallback((acceptedFiles) => {
+    // 선택된 파일을 미리보기 이미지로 변환
+    const imagePreviews = acceptedFiles.map((file: File) =>
+      URL.createObjectURL(file)
+    );
+    setPreviewImages((prevImages) => [...prevImages, ...imagePreviews]);
+  }, []);
 
-    if (fileModule !== null) {
-      // 노드 복사하기 (deep copy)
-      const newNode = fileModule.cloneNode(true);
-      console.log(newNode);
-      // 복사된 Node id 변경하기
-      idNum++;
-      newNode.id = "file-module-" + idNum;
-
-      // 복사한 노드 붙여넣기
-      fileModule.after(newNode);
-    }
-  }
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <div className="col-center gap-4">
-      <h2>수어 사진을 업로드 해주세요.</h2>
+    <form className="col-center w-full gap-4">
+      <div className="flex w-full items-center justify-between">
+        <h1 className="text-2xl font-bold">수어 사진을 올려보세요!</h1>
 
-      <button
-        onClick={() => deepCopy()}
-        type="button"
-        className="col-center w-96 gap-4 rounded-xl bg-main_color p-4 transition-all hover:scale-110"
+        <button
+          type="submit"
+          className="rounded-full bg-main_color px-4 py-1 text-font_white"
+        >
+          수어 번역하기
+        </button>
+      </div>
+
+      <div
+        className="col-center w-full rounded-xl border border-dashed border-gray_3 p-12 hover:border-solid"
+        {...getRootProps()}
       >
-        <span className="text-2xl font-bold text-font_white">이미지 추가</span>
-      </button>
+        <input {...getInputProps()} />
+        <i className="ri-image-add-line text-4xl"></i>
+      </div>
 
-      <form
-        method="post"
-        encType="multipart/form-data"
-        className="col-center w-96 gap-4 rounded-xl bg-sub_color p-4"
-      >
-        <div className="col-center flex-wrap md:flex-row">
-          <span id="file-module-0">
-            <label htmlFor="files" className="cursor-pointer rounded-full">
-              파일 추가
-            </label>
-            <input
-              id="files"
-              name="files"
-              type="file"
-              accept="image/*"
-              className="hidden"
-            />
-          </span>
-        </div>
-
-        <input type="submit" value="ChatGPT에게 수어로 문의하기" />
-      </form>
-    </div>
+      <div className="grid w-full grid-cols-4 flex-wrap gap-2 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
+        {previewImages.map((previewUrl, index) => (
+          <Image
+            key={index}
+            src={previewUrl}
+            alt="이미지 미리보기"
+            width={150}
+            height={150}
+          />
+        ))}
+      </div>
+    </form>
   );
 }
