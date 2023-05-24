@@ -125,9 +125,9 @@ export default function Signup() {
 
       <div className="mt-4 flex items-center justify-between">
         <Link href="/signin">
-          <span>Sign in</span>
+          <span>로그인</span>
         </Link>
-        <button type="submit">Sign up</button>
+        <button type="submit">회원가입</button>
       </div>
     </form>
   );

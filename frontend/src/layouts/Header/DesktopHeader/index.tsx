@@ -19,7 +19,7 @@ export default function DesktopHeader() {
           href={"/signin"}
           className="col-center rounded-full bg-main_color px-4 py-1 text-font_white"
         >
-          <button className="">Sign In</button>
+          <button>로그인</button>
         </Link>
       </motion.div>
     </div>

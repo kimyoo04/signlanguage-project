@@ -68,7 +68,7 @@ export default function Menu({ currentPage }: { currentPage: ICurrentPage }) {
                   currentPage.posts ? "font-bold text-main_color" : ""
                 }`}
               >
-                Sign In
+                로그인
               </span>
             </ButtonWrapper>
           </Link>
