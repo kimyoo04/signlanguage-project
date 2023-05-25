@@ -11,6 +11,6 @@ def chat(request):
     import random
     body = json.loads(request.body)
     question = body['question']
-    answer = {"result": ''.join(random.choice(GPT_BARD_answer(question)))}
+    answer = {"result": GPT_BARD_answer(question)[0]}
     return JsonResponse(answer)
 

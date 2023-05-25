@@ -84,7 +84,7 @@ def chat(request):
         selectedChatResult.save()
 
         context = {
-            'result': ''.join(random.choice(selectedChatResult.content))
+            'result': selectedChatResult.content[0]
         }
 
         print(f'응답 : {context}')

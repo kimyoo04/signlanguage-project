@@ -26,7 +26,7 @@ def googleBard(prompt):
     answer: Bard API를 호출하고, prompt의 결과값을 리스트 형태로 리턴 : [답변1, 답변2, 답변3]
     '''
     # token은 구글 바드에다가 아무거나 검색 → 개발자 도구 → Application → __Secure-1PSID의 value 복사
-    token = "WwhkwCNkjL9u4q8FnQ4RCp1FNnM-YDvjF9MRM2odCAktBiRBpCGDkPPD0wprIH0efoJUOA."
+    token = os.environ.get('AI_BARD_SECRET_KEY')
     answer = [Bard(token=token).get_answer(prompt)['choices'][i]['content'][0] for i in range(3)]
     return answer
 
