@@ -45,23 +45,25 @@ services:
   #   networks:
   #     - server-network
 
-  # nextjs:
-  #   container_name: nextjs
-  #   restart: "always"
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #     args:
-  #       NEXT_PUBLIC_ENV_API_DOMAIN: ${NEXT_PUBLIC_ENV_API_DOMAIN}
-  #       NEXT_PUBLIC_ENV_API_URL: ${NEXT_PUBLIC_ENV_API_URL}
-  #       NEXT_PUBLIC_ENV_DOMAIN: ${NEXT_PUBLIC_ENV_DOMAIN}
-  #   environment:
-  #     TZ: "Asia/Seoul"
-  #   volumes:
-  #     - "./frontend:/usr/src/nextjs"
-  #     - "/usr/src/nextjs"
-  #   networks:
-  #     - server-network
+  nextjs:
+    container_name: nextjs
+    restart: "always"
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_ENV_API_DOMAIN: ${NEXT_PUBLIC_ENV_API_DOMAIN}
+        NEXT_PUBLIC_ENV_API_URL: ${NEXT_PUBLIC_ENV_API_URL}
+        NEXT_PUBLIC_ENV_DOMAIN: ${NEXT_PUBLIC_ENV_DOMAIN}
+    environment:
+      TZ: "Asia/Seoul"
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./frontend:/usr/src/nextjs"
+      - "/usr/src/nextjs"
+    networks:
+      - server-network
 
 networks:
   server-network:

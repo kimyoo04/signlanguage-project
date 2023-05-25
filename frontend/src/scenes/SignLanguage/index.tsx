@@ -1,3 +1,4 @@
+import { signLanguage } from "@api/signLanguage/signLanguage";
 import Image from "next/image";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
@@ -20,12 +21,12 @@ export default function SignLanguage() {
       <div className="flex w-full items-center justify-between">
         <h1 className="text-2xl font-bold">수어 사진을 올려보세요!</h1>
 
-        <button
-          type="submit"
+        <div
+          onClick={() => signLanguage(previewImages)}
           className="rounded-full bg-main_color px-4 py-1 text-font_white"
         >
           수어 번역하기
-        </button>
+        </div>
       </div>
 
       <div

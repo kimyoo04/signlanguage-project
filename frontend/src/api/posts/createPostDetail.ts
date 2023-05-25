@@ -22,9 +22,6 @@ export const useCreateMutation = () => {
         queryKey: [
           {
             category: "posts",
-            keyword: "",
-            startDate: "",
-            endDate: "",
           },
         ],
       });
