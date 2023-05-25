@@ -28,11 +28,16 @@ const nextConfig = (phase) => {
       loader: "custom",
       loaderFile: "./src/util/localImageLoader.ts",
     },
+    env: {
+      NEXT_PUBLIC_ENV_API_DOMAIN: "http://localhost:8000",
+      NEXT_PUBLIC_ENV_API_URL: "http://localhost:8000/api",
+      NEXT_PUBLIC_ENV_DOMAIN: "http://3.216.158.129:3000/",
+    },
     async rewrites() {
       return [
         {
-          source: "/:path*",
-          destination: "http://localhost:8000/:path*",
+          source: "/api/:path*",
+          destination: "http://localhost:8000/api/:path*",
         },
       ];
     },
