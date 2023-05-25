@@ -16,6 +16,7 @@ def chat(request):
     """
     수어 사진을 입력 받으면 Bard 답변 세 개와 ChatGPT 답변 한 개를 리스트로 반환해주는 함수
     """
+    import random
 
     if request.method == 'POST' and 'files' in request.FILES:
         results=[]
@@ -83,7 +84,7 @@ def chat(request):
         selectedChatResult.save()
 
         context = {
-            'result': selectedChatResult.content
+            'result': ''.join(random.choice(selectedChatResult.content))
         }
 
         print(f'응답 : {context}')
