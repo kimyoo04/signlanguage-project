@@ -119,11 +119,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = "django-insecure-r#6_a8pr6o^2c7!57xtu#c883&f5(k964pl$opa&-=v7#%el48"
 DEBUG = True
 
-TIME_ZONE = os.environ.get('DJANGO_TIME_ZONE')
-LANGUAGE_CODE = os.environ.get('DJANGO_LANGUAGE_CODE')
+TIME_ZONE = "Asia/Seoul"
+LANGUAGE_CODE = "ko-kr"
 
 USE_TZ = True
 USE_L10N = True
@@ -142,5 +142,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MODEL_DIR = os.path.join(BASE_DIR, 'signlanguage/model')
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = [os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS_CARPEDIEM'), os.environ.get(
-    'DJANGO_CSRF_TRUSTED_ORIGINS_NEXTJS')]
+CSRF_TRUSTED_ORIGINS = ["https://*.carpediem.so", "http://localhost:3000"]
