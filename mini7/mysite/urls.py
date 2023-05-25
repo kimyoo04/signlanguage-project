@@ -31,7 +31,7 @@ urlpatterns = [
 
     # API URL
     path('api/', include([
-        path('chat/', include('selfchatgpt.urls')),
+        path('chat', include('selfchatgpt.urls')),
         path('signLanguage/', include('selfsignlanguagetochatgpt.urls')),
         path('posts/', include('posts.urls')),
         path('account/', include('account.urls')),
