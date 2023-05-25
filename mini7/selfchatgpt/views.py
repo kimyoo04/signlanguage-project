@@ -10,6 +10,7 @@ def chat(request):
     """
     import random
     body = json.loads(request.body)
+    print('오오오오오오올ㅇ너롼ㅇ래쟐ㄴㄹ',request.body)
     question = body['question']
     answer = {"result": chatGPT(question)[0]} #['ekqqus']
     return JsonResponse(answer)
