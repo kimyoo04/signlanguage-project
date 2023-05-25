@@ -29,9 +29,9 @@ const nextConfig = (phase) => {
       loaderFile: "./src/util/localImageLoader.ts",
     },
     env: {
-      NEXT_PUBLIC_ENV_API_DOMAIN: "http://3.216.158.129:3000",
-      NEXT_PUBLIC_ENV_API_URL: "http://3.216.158.129:3000/api",
-      NEXT_PUBLIC_ENV_DOMAIN: "http://3.216.158.129:3000/",
+      NEXT_PUBLIC_ENV_API_DOMAIN: "http://174.129.98.227:3000/chat",
+      NEXT_PUBLIC_ENV_API_URL: "http://174.129.98.227:3000/api",
+      NEXT_PUBLIC_ENV_DOMAIN: "http://174.129.98.227:3000/",
     },
     async rewrites() {
       return [

@@ -1,6 +1,5 @@
 from bardapi import Bard
 import openai
-import os
 import config
 
 #chatGPT에게 채팅 요청 API
