@@ -84,7 +84,7 @@ def chat(request):
         selectedChatResult.save()
 
         context = {
-            'result': selectedChatResult.content[0]
+            'result': '준비중'
         }
 
         print(f'응답 : {context}')
