@@ -1,61 +1,35 @@
 from django.shortcuts import render
 from django.utils import timezone
-import logging
-from django.conf import settings
-from django.core.files.storage import default_storage
+from django.http import JsonResponse
+
 import numpy as np
 import cv2
 import string
 import mlflow
 import mlflow.keras
-from selfchatgpt.views import chatGPT
-logger = logging.getLogger('mylogger')
-#signlanguage/models.py의 Result 모델을 import한다.
+
 from .models import ChatResult, Result
+from question.bard_gpt import GPT_BARD_answer
 
-from django.core import serializers
-from django.http import HttpResponse, JsonResponse, Http404
-import json
-# Create your views here.
-
-'''
-1. 원칙은 ORM을 사용하여 별도 sql 문이 없는 것이다.
-2. 하지만, ORM을 사용하면서도 sql문을 사용해야 하는 경우가 있다.
-3. 이때는 아래와 같이 사용한다.
- - 물론 이 부분도 view가 sql을 알면 안되서 분리해야 하지만, 짧은 교육상 이곳에 둔다.
-'''
-def getChatResult(self, id):
-        query = "SELECT * FROM signlanguagetochatgpt_chatresult WHERE id = {0}".format(id)
-        logger.info(">>>>>>>> getChatResult SQL : "+query)
-        chatResult = self.t_exec(query)
-
-def index(request):
-    return render(request, 'selflanguagechat/index.html')
 
 def chat(request):
-    if request.method == 'POST' and request.FILES['files']:
+    """
+    수어 사진을 입력 받으면 Bard 답변 세 개와 ChatGPT 답변 한 개를 리스트로 반환해주는 함수
+    """
 
+    if request.method == 'POST' and 'files' in request.FILES:
         results=[]
-        #form에서 전송한 파일을 획득한다.
-        #각 파일별 예측 결과들을 모아야 질문을 위한 언어가 완성된다.
         files = request.FILES.getlist('files')
         chatGptPrompt = ""
         for idx,file in enumerate(files, start=0):
-                # files:
-
-            # logger.error('file', file)
-            # class names 준비
             class_names = list(string.ascii_lowercase)
             class_names = np.array(class_names)
 
-
             # mlflow 로딩
-            # 조별 mlflow로 바꿔야 할 부분
             mlflow_uri="http://mini7-mlflow.carpediem.so/"
             mlflow.set_tracking_uri(mlflow_uri)
             model_uri = "models:/Sign_Signal/04"
             model = mlflow.keras.load_model(model_uri)
-
 
             # history 저장을 위해 객체에 담아서 DB에 저장한다.
             # 이때 파일시스템에 저장도 된다.
@@ -104,17 +78,15 @@ def chat(request):
         selectedChatResult = ChatResult.objects.get(id=chatResult.id)
 
         #chatGptPrompt를 chatGPT에게 전달한다.
-        content = chatGPT(selectedChatResult.prompt)
+        content = GPT_BARD_answer(selectedChatResult.prompt)
         selectedChatResult.content = content
         selectedChatResult.save()
 
+        context = {
+            'result': selectedChatResult.content
+        }
 
+        print(f'응답 : {context}')
 
-    context = {
-        'question': selectedChatResult.prompt,
-        'result': selectedChatResult.content
-    }
-
-    print(f'응답 : {context}')
-
-    return JsonResponse(context)
+        return JsonResponse(context)
+    return JsonResponse({"message":"fail"}, status=400)
