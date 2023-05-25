@@ -2,7 +2,7 @@ import { TUserId, TUsername } from "./signin";
 
 // 자유게시판 데이터
 export interface IPostData {
-  id: TId;
+  postId: TId;
   title: TTitle;
   content: TContent;
   createdAt: TCreatedAt;

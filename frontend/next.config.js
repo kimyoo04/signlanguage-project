@@ -6,9 +6,17 @@ const nextConfig = (phase) => {
     return {
       reactStrictMode: false,
       env: {
-        NEXT_PUBLIC_ENV_API_DOMAIN: "http://localhost:8888",
-        NEXT_PUBLIC_ENV_API_URL: "http://localhost:8888/api/v1",
+        NEXT_PUBLIC_ENV_API_DOMAIN: "http://localhost:8000",
+        NEXT_PUBLIC_ENV_API_URL: "http://localhost:8000/api",
         NEXT_PUBLIC_ENV_DOMAIN: "http://localhost:3000",
+      },
+      async rewrites() {
+        return [
+          {
+            source: "/api/:path*",
+            destination: "http://localhost:8000/api/:path*",
+          },
+        ];
       },
     };
   }
@@ -19,6 +27,14 @@ const nextConfig = (phase) => {
     images: {
       loader: "custom",
       loaderFile: "./src/util/localImageLoader.ts",
+    },
+    async rewrites() {
+      return [
+        {
+          source: "/:path*",
+          destination: "http://localhost:8000/:path*",
+        },
+      ];
     },
   };
 };

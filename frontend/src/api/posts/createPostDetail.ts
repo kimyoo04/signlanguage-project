@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 // 게시글 Create
 export const createPostDetail = async (newPost: IPostForm) => {
-  const response = await axios.post(`/posts`, newPost);
+  const response = await axios.post(`/posts/`, newPost);
   return response; // 성공하면 반환 데이터 없음
 };
 

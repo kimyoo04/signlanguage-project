@@ -3,7 +3,7 @@ import { TQuestion } from "@type/chat";
 
 export const sendQuestion = async (question: TQuestion) => {
   try {
-    const response = await axios.post("/chat/question", { question });
+    const response = await axios.post("/chat/", { question });
     return response.data;
   } catch (err) {
     console.error(err);

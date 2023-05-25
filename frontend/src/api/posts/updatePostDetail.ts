@@ -6,7 +6,10 @@ import { useRouter } from "next/router";
 // 게시글 Update
 
 export const updatePostDetail = async (updatedPost: IUpdatePostForm) => {
-  const response = await axios.put(`/posts/${updatedPost.postId}`, updatedPost);
+  const response = await axios.put(
+    `/posts/${updatedPost.postId}/`,
+    updatedPost
+  );
   return response;
 };
 

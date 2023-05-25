@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import ErrorMsg from "@components/TextField/ErrorMsg";
 import { TextField } from "@components/TextField";
 import Link from "next/link";
-import axios from "axios";
 import { useAppDispatch } from "@toolkit/hook";
 import { authActions } from "@features/auth/authSlice";
+import axios from "@api/axiosInstance";
 
 export default function Signin() {
   const router = useRouter();
@@ -16,7 +16,6 @@ export default function Signin() {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm<ISignInForm>({
     defaultValues: {},
   });
@@ -24,7 +23,7 @@ export default function Signin() {
   const onValid = async (data: ISignInForm) => {
     try {
       // get user
-      const response = await axios.post("/auth/signin", {
+      const response = await axios.post("/account/signin/", {
         userId: data.userId,
         password: data.password,
       });
@@ -34,17 +33,7 @@ export default function Signin() {
 
       console.log(response);
     } catch (error: any) {
-      const setErrors = (errors: Record<string, string>) => {
-        Object.entries(errors).forEach(([key, value]) => {
-          setError(key as "userId" | "password", {
-            message: value,
-          });
-        });
-      };
-
-      const errorMessage: { [key: string]: string } = error.response.data;
-      console.log(errorMessage);
-      setErrors(errorMessage);
+      console.log(error);
       return;
     }
 

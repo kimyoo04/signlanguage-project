@@ -7,7 +7,7 @@ export default function PostItem({ post }: { post: IPostData }) {
   return (
     // postDetail로 링크
     <Link
-      href={`/posts/${post.id}`}
+      href={`/posts/${post.postId}`}
       className="flex w-full flex-col gap-4 rounded-2xl bg-white p-4 shadow-md"
     >
       {/* 유저 이름 */}

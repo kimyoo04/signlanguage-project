@@ -1,4 +1,4 @@
-import { IChatAlert, IChatState, IFeedback, IMessage } from "@type/chat";
+import { IChatAlert, IChatState, IMessage } from "@type/chat";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: IChatState = {

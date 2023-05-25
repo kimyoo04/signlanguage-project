@@ -28,8 +28,8 @@ export default function Introduce() {
           >
             <Image
               src={"/images/github.png"}
-              width={50}
-              height={50}
+              width={80}
+              height={80}
               alt={"bardai"}
               className="transition-all hover:scale-110"
             />

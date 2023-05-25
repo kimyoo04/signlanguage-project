@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { IPostDetail } from "@type/posts";
 
 export const readPostDetail = async (id: string) => {
-  const response = await axios.get(`/posts/${id}`);
+  const response = await axios.get(`/posts/${id}/`);
   return response.data;
 };
 

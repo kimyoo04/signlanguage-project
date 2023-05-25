@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import ErrorMsg from "@components/TextField/ErrorMsg";
 import { TextField } from "@components/TextField";
 import Link from "next/link";
-import axios from "axios";
+import axios from "@api/axiosInstance";
 
 export default function Signup() {
   const router = useRouter();
@@ -24,24 +24,14 @@ export default function Signup() {
     }
 
     try {
-      const response = await axios.post(`/auth/signup`, {
+      const response = await axios.post(`/account/signup/`, {
         userId: data.userId,
         username: data.username,
         password: data.password,
       });
       console.log(response);
     } catch (error: any) {
-      const setErrors = (errors: Record<string, string>) => {
-        Object.entries(errors).forEach(([key, value]) => {
-          setError(key as "userId" | "username" | "password", {
-            message: value,
-          });
-        });
-      };
-
-      const errorMessage: { [key: string]: string } = error.response.data;
-      console.log(errorMessage);
-      setErrors(errorMessage);
+      console.log(error);
       return;
     }
 

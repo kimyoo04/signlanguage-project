@@ -20,7 +20,7 @@ export default function PostList() {
           {/* //! 자유게시판 검색결과 무한 스크롤 영역 */}
           <ul className="grid w-full grid-cols-1 gap-4">
             {data.data.map((post, indx) => (
-              <PostItem key={post.id + indx} post={post as IPostData} />
+              <PostItem key={post.postId + indx} post={post as IPostData} />
             ))}
           </ul>
         </>

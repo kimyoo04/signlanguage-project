@@ -23,7 +23,7 @@ export default function ChatInput() {
       dispatch(
         chatActions.getAnswer({
           id: answerData.id,
-          answer: answerData.answer,
+          answer: answerData.result,
           feedback: null,
         })
       );
