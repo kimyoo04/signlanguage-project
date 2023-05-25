@@ -21,7 +21,7 @@ ChatGPT API와 Bard API는 개발자들이 대화형 인공지능 모델에 액�
 <img src="https://github.com/kimyoo04/signlanguage-project/assets/55778040/13101e09-e6e1-4283-9a26-eb03d74a6cd5">
 
 ### **채팅**
-질문을 입력하면 네 개의 답변을 확인할 수 있습니다.
+질문을 입력하면 네 개의 답변 중 하나의 답변이 랜덤으로 출력됩니다.
 
 ### **수어번역서비스**
 이미지를 입력하면 mlflow의 모델을 통해 알파벳을 인식합니다.<br>
