@@ -22,7 +22,7 @@ import json
 1. 원칙은 ORM을 사용하여 별도 sql 문이 없는 것이다.
 2. 하지만, ORM을 사용하면서도 sql문을 사용해야 하는 경우가 있다.
 3. 이때는 아래와 같이 사용한다.
- - 물론 이 부분도 view가 sql을 알면 안되서 분리해야 하지만, 짧은 교육상 이곳에 둔다. 
+ - 물론 이 부분도 view가 sql을 알면 안되서 분리해야 하지만, 짧은 교육상 이곳에 둔다.
 '''
 def getChatResult(self, id):
         query = "SELECT * FROM signlanguagetochatgpt_chatresult WHERE id = {0}".format(id)
@@ -86,13 +86,13 @@ def chat(request):
 
             #결과를 DB에 저장한다.
             result.result = result_str
-            # result.is_correct = 
+            # result.is_correct =
             result.save()
             results.append(result)
 
             #result.result의 결과를 하나씩 chatGptPrompt에 추가한다.
             chatGptPrompt += result.result
-        
+
         #질문을 DB에 저장한다.
         chatResult = ChatResult()
         chatResult.prompt = chatGptPrompt
@@ -107,14 +107,14 @@ def chat(request):
         content = chatGPT(selectedChatResult.prompt)
         selectedChatResult.content = content
         selectedChatResult.save()
-        
-     
+
+
 
     context = {
         'question': selectedChatResult.prompt,
         'result': selectedChatResult.content
     }
-    
+
     print(f'응답 : {context}')
 
     return JsonResponse(context)
