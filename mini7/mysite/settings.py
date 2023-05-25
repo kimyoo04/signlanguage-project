@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -119,11 +120,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-SECRET_KEY = "django-insecure-r#6_a8pr6o^2c7!57xtu#c883&f5(k964pl$opa&-=v7#%el48"
+SECRET_KEY = config.DJANGO_SECRET_KEY
 DEBUG = True
 
-TIME_ZONE = "Asia/Seoul"
-LANGUAGE_CODE = "ko-kr"
+TIME_ZONE = config.DJANGO_TIME_ZONE
+LANGUAGE_CODE = config.DJANGO_LANGUAGE_CODE
 
 USE_TZ = True
 USE_L10N = True

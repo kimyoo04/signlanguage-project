@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from question.bard_gpt import chatGPT, GPT_BARD_answer, googleBard
+from question.bard_gpt import GPT_BARD_answer
 import json
 
 
@@ -10,8 +10,7 @@ def chat(request):
     """
     import random
     body = json.loads(request.body)
-    print('오오오오오오올ㅇ너롼ㅇ래쟐ㄴㄹ',request.body)
     question = body['question']
-    answer = {"result": googleBard(question)[0]} #['ekqqus']
+    answer = {"result": ''.join(random.choice(GPT_BARD_answer(question)))}
     return JsonResponse(answer)
 
