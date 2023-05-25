@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.http import JsonResponse
+from datetime import datetime, timedelta
 import json
 
 from rest_framework_jwt.settings import api_settings
@@ -70,7 +71,14 @@ def signin_view(request):
             payload = jwt_payload_handler(user)
             token = jwt_encode_handler(payload)
             
-            response = JsonResponse({'success': True, 'message': '로그인 성공!', 'token': token})
+            response_data = {
+                'success': True,
+                'message': '로그인 성공!',
+                'user': user.username,
+            }
+            response = JsonResponse(response_data)
+            response.set_cookie('jwt_token', token, expires=datetime.utcnow() + timedelta(hours=24))
+            
             return response
         else:
             return JsonResponse({'success': False, 'message': '잘못된 사용자 이름 또는 비밀번호입니다.'})
