@@ -9,6 +9,7 @@ const nextConfig = (phase) => {
         NEXT_PUBLIC_ENV_API_DOMAIN: "http://localhost:8000",
         NEXT_PUBLIC_ENV_API_URL: "http://localhost:8000/api",
         NEXT_PUBLIC_ENV_DOMAIN: "http://localhost:3000",
+        NEXT_PUBLIC_ENV_IMAGE_URL: "http://localhost:3000",
       },
       async rewrites() {
         return [
@@ -21,6 +22,7 @@ const nextConfig = (phase) => {
     };
   }
 
+  // docker-compose 로 환경변수 전달
   return {
     reactStrictMode: false,
     output: "standalone",
@@ -31,8 +33,8 @@ const nextConfig = (phase) => {
     async rewrites() {
       return [
         {
-          source: "/:path*",
-          destination: "http://localhost:8000/:path*",
+          source: "/api/:path*",
+          destination: "http://localhost:8000/api/:path*",
         },
       ];
     },
