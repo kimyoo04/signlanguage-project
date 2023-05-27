@@ -55,13 +55,11 @@ services:
         NEXT_PUBLIC_ENV_API_DOMAIN: ${NEXT_PUBLIC_ENV_API_DOMAIN}
         NEXT_PUBLIC_ENV_API_URL: ${NEXT_PUBLIC_ENV_API_URL}
         NEXT_PUBLIC_ENV_DOMAIN: ${NEXT_PUBLIC_ENV_DOMAIN}
+        NEXT_PUBLIC_ENV_IMAGE_URL: ${NEXT_PUBLIC_ENV_IMAGE_URL}
     environment:
       TZ: "Asia/Seoul"
     ports:
       - "3000:3000"
-    volumes:
-      - "./frontend:/usr/src/nextjs"
-      - "/usr/src/nextjs"
     networks:
       - server-network
 
