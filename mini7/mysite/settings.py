@@ -135,6 +135,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'question'),
 ]
 
+APPEND_SLASH = False
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
