@@ -1,12 +1,15 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
-import { ISignInForm } from "@type/signin";
 import { useForm } from "react-hook-form";
+
+import { signin } from "@api/auth/signin";
+import { ISignInForm } from "@type/signin";
+
 import ErrorMsg from "@components/TextField/ErrorMsg";
 import { TextField } from "@components/TextField";
-import Link from "next/link";
+
 import { useAppDispatch } from "@toolkit/hook";
 import { authActions } from "@features/auth/authSlice";
-import axios from "@api/axiosInstance";
 
 export default function Signin() {
   const router = useRouter();
@@ -21,24 +24,14 @@ export default function Signin() {
   });
 
   const onValid = async (data: ISignInForm) => {
-    try {
-      // get user
-      const response = await axios.post("/account/signin/", {
-        userId: data.userId,
-        password: data.password,
-      });
+    const response = await signin(data);
 
-      // auth state
+    // 로그인 요청 (성공 시 authState 변경 및 메인 페이지로 이동)
+    if (response) {
       dispatch(authActions.signin({ ...response.data }));
-
-      console.log(response);
-    } catch (error: any) {
-      console.log(error);
-      return;
+      router.replace("/");
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
-
-    router.replace("/");
-    await new Promise((resolve) => setTimeout(resolve, 500));
   };
 
   return (
