@@ -1,10 +1,10 @@
-import OnePageLayout from "@layouts/OnePageLayout";
+import MainLayout from "@layouts/MainLayout";
 import SignLanguage from "@scenes/SignLanguage";
 
 export default function SignLanguagePage() {
   return (
-    <OnePageLayout>
+    <MainLayout>
       <SignLanguage />
-    </OnePageLayout>
+    </MainLayout>
   );
 }
