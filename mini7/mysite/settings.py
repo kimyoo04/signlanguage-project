@@ -144,5 +144,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MODEL_DIR = os.path.join(BASE_DIR, 'signlanguage/model')
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = [os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS_CARPEDIEM'), os.environ.get(
-    'DJANGO_CSRF_TRUSTED_ORIGINS_NEXTJS')]
+CSRF_TRUSTED_ORIGINS = [os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS_NEXTJS')]
