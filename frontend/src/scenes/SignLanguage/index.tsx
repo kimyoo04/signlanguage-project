@@ -5,6 +5,7 @@ import { useDropzone } from "react-dropzone";
 
 export default function SignLanguage() {
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [answer, setAnswer] = useState<string>("");
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -12,6 +13,7 @@ export default function SignLanguage() {
     const imagePreviews = acceptedFiles.map((file: File) =>
       URL.createObjectURL(file)
     );
+    setImageFiles((imageFiles) => [...imageFiles, ...acceptedFiles]);
     setPreviewImages((prevImages) => [...prevImages, ...imagePreviews]);
   }, []);
 
@@ -20,7 +22,7 @@ export default function SignLanguage() {
   const handleSubmit = async () => {
     // 선택된 파일들을 formData로 변환
     const formData = new FormData();
-    previewImages.forEach((image) => {
+    imageFiles.forEach((image) => {
       formData.append("files", image);
     });
 
@@ -34,6 +36,7 @@ export default function SignLanguage() {
 
   // 미리보기 이미지 초기화
   const handleReset = async () => {
+    setAnswer("");
     setPreviewImages([]);
   };
 
