@@ -4,13 +4,14 @@ import Content from "./PostDetailItem/Content";
 import ScrollButton from "@components/ScrollButton";
 import UserForm from "@components/UserForm";
 
-import { useReadPostDetail } from "@api/posts/readPostDetail";
+import { useReadPost } from "@api/posts/readPost";
 import { useAppSelector } from "@toolkit/hook";
 
 export default function PostDetail({ id }: { id: string }) {
   const showModal = useAppSelector((state) => state.userForm.showModal);
 
-  const { data, isLoading, error } = useReadPostDetail(id);
+  // 게시글 불어오기
+  const { data, isLoading, error } = useReadPost(id);
 
   return (
     <>

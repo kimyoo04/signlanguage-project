@@ -4,7 +4,7 @@ import { IPostForm } from "@type/posts";
 import { useRouter } from "next/router";
 
 // 게시글 Create
-export const createPostDetail = async (newPost: IPostForm) => {
+export const createPost = async (newPost: IPostForm) => {
   const response = await axios.post(`/posts/`, newPost);
   return response; // 성공하면 반환 데이터 없음
 };
@@ -16,7 +16,7 @@ export const useCreateMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: createPostDetail,
+    mutationFn: createPost,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: [

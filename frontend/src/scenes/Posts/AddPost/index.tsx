@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useCreateMutation } from "@api/posts/createPostDetail";
+import { useCreateMutation } from "@api/posts/createPost";
 
 import ButtonWrapper from "@components/Animation/ButtonWrapper";
 import ScrollButton from "@components/ScrollButton";

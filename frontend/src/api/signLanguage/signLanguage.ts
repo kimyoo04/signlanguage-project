@@ -1,9 +1,10 @@
-import axios from "@api/axiosInstance";
+import axios from "axios";
 
 export const signLanguage = async (files: string[]) => {
+  console.log(files);
   try {
     const response = await axios.post(
-      "/signLanguage/",
+      "http://localhost:3000/api/signLanguage",
       { files },
       {
         headers: {
