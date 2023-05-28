@@ -1,12 +1,12 @@
 import axios from "@api/axiosInstance";
-import { IDeletePostDetail } from "@type/posts";
+import { IDeletePost } from "@type/posts";
 
-export const deletePost = async (data: IDeletePostDetail) => {
+export const deletePost = async (data: IDeletePost) => {
   try {
     await axios.delete(`/posts/${data.postId}/`);
     return true;
   } catch (err) {
-    console.log("🚀 deletePostDetail.tsx", err);
+    console.log("🚀 deletePost.tsx", err);
     return false;
   }
 };

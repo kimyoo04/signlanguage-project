@@ -1,6 +1,6 @@
 import axios from "@api/axiosInstance";
 import { useQuery } from "@tanstack/react-query";
-import { IPostDetail } from "@type/posts";
+import { IPostData } from "@type/posts";
 
 export const readPost = async (id: string) => {
   try {
@@ -13,7 +13,7 @@ export const readPost = async (id: string) => {
 };
 
 export const useReadPost = (id: string) => {
-  return useQuery<IPostDetail>({
+  return useQuery<IPostData>({
     queryKey: ["postDetail", id],
     queryFn: () => readPost(id),
     refetchOnMount: "always", // 유저폼 활성화를 위해 설정

@@ -29,7 +29,7 @@ export interface IUpdatePostForm {
 }
 
 // 게시글 삭제 시 전송할 데이터
-export interface IDeletePostDetail {
+export interface IDeletePost {
   postId: TPostId;
 }
 
@@ -40,15 +40,3 @@ export type TTitle = string;
 export type TContent = string;
 export type TViews = number;
 export type TCreatedAt = string;
-
-// 게시글 디테일 페이지 데이터
-export interface IPostDetail {
-  id: TId;
-  title: TTitle;
-  content: TContent;
-  createdAt: TCreatedAt;
-  views: TViews;
-
-  userId: TUserId;
-  username: TUsername;
-}
