@@ -6,6 +6,7 @@ import { useDropzone } from "react-dropzone";
 export default function SignLanguage() {
   const [previewImages, setPreviewImages] = useState<string[]>([]);
   const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [question, setQuestion] = useState<string[]>([]);
   const [answer, setAnswer] = useState<string>("");
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -29,19 +30,21 @@ export default function SignLanguage() {
     // 수어 번역 요청 후 답변 받아오기 및 미리보기 초기화
     const response = await signLanguage(formData);
     if (response) {
+      setQuestion(previewImages);
       setAnswer(response.result);
       setPreviewImages([]);
     }
   };
 
-  // 미리보기 이미지 초기화
+  // 모든 미리보기 이미지와 답변 초기화
   const handleReset = async () => {
+    setQuestion([]);
     setAnswer("");
     setPreviewImages([]);
   };
 
   return (
-    <section className="col-center w-full gap-4">
+    <section className="flex w-full flex-col items-center justify-start gap-4 pb-20 pt-12">
       <div className="w-full">
         <h1 className="text-2xl font-bold">수어 사진을 올려보세요!</h1>
       </div>
@@ -85,10 +88,24 @@ export default function SignLanguage() {
         </button>
       </div>
 
-      {answer && (
+      {answer && question && (
         <div className="col-center w-full gap-4">
           <h1 className="text-2xl font-bold">수어 번역 결과</h1>
-          <div className="w-full rounded-xl border border-dashed border-gray_3 p-12 hover:border-solid">
+          <div className="flex w-full flex-col gap-8 rounded-xl border border-gray_3 p-12">
+            <h2 className="text-2xl font-bold">질문 :</h2>
+            {question.map((previewUrl, index) => (
+              <Image
+                key={index}
+                src={previewUrl}
+                alt="이미지 미리보기"
+                width={150}
+                height={150}
+              />
+            ))}
+          </div>
+
+          <div className="flex w-full flex-col gap-8 rounded-xl border border-gray_3 p-12">
+            <h2 className="text-2xl font-bold">답변 :</h2>
             <p className="text-2xl">{answer}</p>
           </div>
         </div>
