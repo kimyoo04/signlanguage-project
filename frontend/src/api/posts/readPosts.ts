@@ -6,7 +6,7 @@ import { AxiosError } from "axios";
 export const readPosts = async (page: number) => {
   const params = { page };
   try {
-    const response = await axios.get(`/posts/`, { params });
+    const response = await axios.get(`/posts`, { params });
     return response.data;
   } catch (err) {
     console.log("🚀 readPosts.tsx", err);

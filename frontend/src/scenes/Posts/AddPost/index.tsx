@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useCreateMutation } from "@api/posts/createPostDetail";
+import { useCreateMutation } from "@api/posts/createPost";
 
 import ButtonWrapper from "@components/Animation/ButtonWrapper";
 import ScrollButton from "@components/ScrollButton";
@@ -76,7 +76,7 @@ export default function AddPost() {
               autoComplete="off"
               placeholder="제목을 입력해 주세요."
               maxLength={51}
-              className="textfield w-full rounded-md"
+              className="textfield w-full rounded-md pl-4"
             />
             <span className="mt-1 text-xs font-medium text-red-500">
               <ErrorMsg>{errors?.title?.message}</ErrorMsg>

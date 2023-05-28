@@ -5,11 +5,8 @@ import { useRouter } from "next/router";
 
 // 게시글 Update
 
-export const updatePostDetail = async (updatedPost: IUpdatePostForm) => {
-  const response = await axios.put(
-    `/posts/${updatedPost.postId}/`,
-    updatedPost
-  );
+export const updatePost = async (updatedPost: IUpdatePostForm) => {
+  const response = await axios.put(`/posts/${updatedPost.postId}`, updatedPost);
   return response;
 };
 
@@ -20,7 +17,7 @@ export const useUpdatePostMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: updatePostDetail,
+    mutationFn: updatePost,
     onSuccess: async (_, variables) => {
       // 게시글 디테일 캐시 무효화
       await queryClient.invalidateQueries({

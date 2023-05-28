@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import ErrorMsg from "@components/TextField/ErrorMsg";
 import { TextField } from "@components/TextField";
 import Link from "next/link";
-import axios from "@api/axiosInstance";
+import { signup } from "@api/auth/signup";
 
 export default function Signup() {
   const router = useRouter();
@@ -23,20 +23,12 @@ export default function Signup() {
       setError("extraError", { message: "Password가 일치하지 않습니다." });
     }
 
-    try {
-      const response = await axios.post(`/account/signup/`, {
-        userId: data.userId,
-        username: data.username,
-        password: data.password,
-      });
-      console.log(response);
-    } catch (error: any) {
-      console.log(error);
-      return;
+    // 회원가입 요청 (성공 시 로그인 페이지로 이동)
+    const result = await signup(data);
+    if (result) {
+      router.replace("/signin");
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
-
-    router.replace("/signin");
-    await new Promise((resolve) => setTimeout(resolve, 500));
   };
 
   return (
@@ -115,8 +107,9 @@ export default function Signup() {
 
       <div className="mt-4 flex items-center justify-between">
         <Link href="/signin">
-          <span>로그인</span>
+          <button>로그인</button>
         </Link>
+
         <button type="submit">회원가입</button>
       </div>
     </form>
