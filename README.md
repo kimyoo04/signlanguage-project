@@ -17,7 +17,7 @@ KT AIVLE School 3기 미니프로젝트 7차 프로젝트
 ## **🌈 주요 기능**
 
 ChatGPT는 OpenAI가 제공하는 서비스, Bard는 Google에서 제공하는 서비스입니다.<br>
-ChatGPT API와 Bard API는 개발자들이 대화형 인공지능 모델에 액세스하여 다양한 애플리케이션과 서비스에서 자연어 처리 기능을 활용할 수 있도록 도와줍니다.
+ChatGPT와 Bard는 개발자들이 대화형 인공지능 모델에 액세스하여 다양한 애플리케이션과 서비스에서 기능을 활용할 수 있도록 도와줍니다.
 <img src="https://github.com/kimyoo04/signlanguage-project/assets/55778040/13101e09-e6e1-4283-9a26-eb03d74a6cd5">
 
 ### **채팅**
@@ -53,21 +53,21 @@ ChatGPT API와 Bard API는 개발자들이 대화형 인공지능 모델에 액�
     <td align="center"><a href="https://github.com/kimyoo04"><img src="https://avatars.githubusercontent.com/u/58503130?v=4" width="100px;"><br /><sub><b>kimyoo04</b></sub></td>
     <td align="center"><a href="https://github.com/bfmeef" width="125" height="170"><img src="https://avatars.githubusercontent.com/u/24477729?&v=4" width="100px;"><br /><sub><b>bfmeef</b></sub></td>
     <td align="center"><a href="https://github.com/wath1457"><img src="https://avatars.githubusercontent.com/u/93395614?v=4" width="100px;"><br /><sub><b>wath1457</b></sub></td>
-    <td align="center"><a href="https://github.com/heewon00"><img src="https://avatars.githubusercontent.com/u/55778040?v=4" width="100px;"><br /><sub><b>heewon00</b></sub></td>
     <td align="center"><a href="https://github.com/dptcldpa"><img src="https://avatars.githubusercontent.com/u/116916268?v=4" width="100px;"><br /><sub><b>dptcldpa</b></sub></td>
+      <td align="center"><a href="https://github.com/heewon00"><img src="https://avatars.githubusercontent.com/u/55778040?v=4" width="100px;"><br /><sub><b>heewon00</b></sub></td>
     <td align="center"><a href="https://github.com/Yujun-Won"><img src="https://avatars.githubusercontent.com/u/124374862?v=4" width="100px;"><br /><sub><b>Yujun-Won</b></sub></td>
+    <td align="center"><a href="https://github.com/Leechansol"><img src="https://avatars.githubusercontent.com/u/18729932?v=4" width="100px;"><br /><sub><b>Leechansol</b></sub></td>
   </tr>
 </table>
 
 
-## ** 🎀 기술 스택**
+## **🎀 기술 스택**
 <div>
-  <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"> 
-  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
-  <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
-  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
-  <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
-  <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=git&logoColor=white">
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=git&logoColor=white">
-  <img src="https://img.shields.io/badge/MLflow-0194E2?style=for-the-badge&logo=git&logoColor=white">
+    <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"> 
+    <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
+    <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+    <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
+    <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+    <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
+    <img src="https://img.shields.io/badge/MLflow-0194E2?style=for-the-badge&logo=mlflow&logoColor=white">
  </div>
